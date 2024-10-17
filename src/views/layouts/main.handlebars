@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Inicio</a> |
+      <a href="/products">Productos</a> |
+      <a id="cartLink" href="#">Ver Carrito</a> |
+      <a href="/realtimeproducts">Modificar Productos</a>
+    </nav>
+  </header>
+  {{{body}}}
+  <footer>
+    <p>Proyecto Final Backend I Rocha María</p>
+  </footer>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cartLink = document.getElementById('cartLink');
+      const cartId = localStorage.getItem('cartId');
+      
+      if (cartId) {
+        cartLink.href = `/carts/${cartId}`;
+      } else {
+        cartLink.href = '#'; 
+      }
+    });
+  </script>
+</body>
+</html>
